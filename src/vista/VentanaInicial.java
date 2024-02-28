@@ -116,6 +116,11 @@ public class VentanaInicial extends javax.swing.JFrame {
         mostrarContacto.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         mostrarContacto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agenda.png"))); // NOI18N
         mostrarContacto.setText("Mostrar contactos");
+        mostrarContacto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostrarContactoActionPerformed(evt);
+            }
+        });
         menu.add(mostrarContacto);
         menu.add(jSeparator1);
 
@@ -171,6 +176,11 @@ public class VentanaInicial extends javax.swing.JFrame {
         txtCorreo.setText("");
         txtTelefono.setText("");
     }//GEN-LAST:event_btnGuardarContactoActionPerformed
+
+    private void mostrarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarContactoActionPerformed
+        VentanaMostrarContacto mostrar = new VentanaMostrarContacto(this, true);
+        mostrar.setVisible(true);
+    }//GEN-LAST:event_mostrarContactoActionPerformed
 
 
     public static void main(String args[]) {
