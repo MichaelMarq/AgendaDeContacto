@@ -23,7 +23,7 @@ public class VentanaInicial extends javax.swing.JFrame {
         txtCorreo = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         jLTelefono = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnGuardarContacto = new javax.swing.JButton();
         barraMenu = new javax.swing.JMenuBar();
         menu = new javax.swing.JMenu();
         mostrarContacto = new javax.swing.JMenuItem();
@@ -54,8 +54,13 @@ public class VentanaInicial extends javax.swing.JFrame {
         jLTelefono.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLTelefono.setText("Telefono:");
 
-        jButton1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton1.setText("Guardar Contacto");
+        btnGuardarContacto.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnGuardarContacto.setText("Guardar Contacto");
+        btnGuardarContacto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarContactoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -80,7 +85,7 @@ public class VentanaInicial extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnGuardarContacto)
                 .addGap(171, 171, 171))
         );
         panelLayout.setVerticalGroup(
@@ -101,7 +106,7 @@ public class VentanaInicial extends javax.swing.JFrame {
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(26, 26, 26)
-                .addComponent(jButton1)
+                .addComponent(btnGuardarContacto)
                 .addGap(30, 30, 30))
         );
 
@@ -146,6 +151,27 @@ public class VentanaInicial extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_salirActionPerformed
 
+    private void btnGuardarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarContactoActionPerformed
+        //Creamos el archivo .txt
+        Archivo archivo = new Archivo();
+        archivo.crearArchivo();
+        
+        String nombre,correo,telefono;
+        
+        nombre = txtContacto.getText();
+        correo = txtCorreo.getText();
+        telefono = txtTelefono.getText();
+        
+        //Creamos el objeto persona para poder escribir sobre el .txt
+        Persona persona = new Persona(nombre, correo, telefono);
+        archivo.escribirTexto(persona);
+        
+        //Restablecemos las cajas de texto para ingresar nuevos contactos
+        txtContacto.setText("");
+        txtCorreo.setText("");
+        txtTelefono.setText("");
+    }//GEN-LAST:event_btnGuardarContactoActionPerformed
+
 
     public static void main(String args[]) {
 
@@ -158,7 +184,7 @@ public class VentanaInicial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barraMenu;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnGuardarContacto;
     private javax.swing.JLabel jLContacto;
     private javax.swing.JLabel jLCorreo;
     private javax.swing.JLabel jLTelefono;
